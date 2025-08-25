@@ -11,6 +11,9 @@ import ProfilePage from "../pages/ProfilePage"; // Página de perfil de usuario
 // Importa los componentes de autenticación y protección
 import ProtectedRoute from "./ProtectedRoute"; // <-- Importa el componente de Ruta Protegida
 import RegisterPage from "../pages/auth/RegisterPage";
+import SignBackground from "../components/layout/signBackground";
+import RecoveryPasswordPage from "../pages/Auth/RecoveryPasswordPage";
+import RestorePasswordPage from "../pages/Auth/RestorePasswordPage";
 
 // Componente para la página 404 (No Encontrado)
 const NotFoundPage = () => {
@@ -42,8 +45,12 @@ const AppRouter = () => {
 
       {/* Ruta para la página de login/registro (App.jsx con animación de paneles) */}
       {/* Esta ruta no necesita protección porque es para que los usuarios se autentiquen. */}
-      <Route path="/auth" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route element={<SignBackground />}>
+        <Route path="/auth" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/recovery" element={<RecoveryPasswordPage />} />
+        <Route path="/restore" element={<RestorePasswordPage />} />
+      </Route>
 
       {/* ==================================== */}
       {/* ======== Rutas Protegidas ======== */}
@@ -60,7 +67,11 @@ const AppRouter = () => {
 
       {/* Ruta protegida para la página de Administración.
               Requiere que el usuario esté autenticado Y tenga el rol 'admin'. */}
-      <Route element={<ProtectedRoute requiredRoles={["admin"]} redirectPath="/dashboard"/>}>
+      <Route
+        element={
+          <ProtectedRoute requiredRoles={["admin"]} redirectPath="/dashboard" />
+        }
+      >
         <Route path="/admin" element={<AdminPage />} />
       </Route>
 

@@ -6,14 +6,17 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "./contexts/theme/ThemeState.jsx";
 import { AuthProvider } from "./contexts/auth/AuthContext.jsx";
 import ButtonTheme from "./components/specific/ButtonTheme.jsx";
+import { EmpresaProvider } from "./contexts/empresa/EmpresaState.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <ThemeProvider>
         <AuthProvider>
-          <AppRouter />
-          <ButtonTheme></ButtonTheme>
+          <EmpresaProvider>
+            <AppRouter />
+            <ButtonTheme></ButtonTheme>
+          </EmpresaProvider>
         </AuthProvider>
       </ThemeProvider>
     </Router>

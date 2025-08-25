@@ -80,9 +80,11 @@
   --border-primary-gray: #374151;
   --border-primary-black: #f4f4f5;
   --border-primary-white: #18181b;
-}
-@media (prefers-color-scheme: dark) {
-  
+
+  /* & input[type="checkbox"] {
+    background-color: white;
+    border-color: var(--border-primary-gray);
+  } */
 }
 @layer components {
   /* Text colors */
